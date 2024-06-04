@@ -15,7 +15,7 @@ const LoginPage: React.FC = () => {
     const msg = await login({ username, password });
     setMessage(msg);
     if (msg === 'Login successful') {
-      navigate("/home"); //  to home page
+      navigate("/"); //  to home page
     }
     return null;
   };

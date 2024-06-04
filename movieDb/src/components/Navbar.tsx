@@ -8,7 +8,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="navbar">
-      <button onClick={() => navigate('/home')}>Home</button>
+      <button onClick={() => navigate('/')}>Home</button>
       <button onClick={logout}>Logout</button>
     </nav>
   );

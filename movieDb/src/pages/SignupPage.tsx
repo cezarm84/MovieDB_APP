@@ -16,7 +16,7 @@ const SignupPage: React.FC = () => {
     const msg = await register({ username, password });
     setMessage(msg);
     if (msg === 'User created successfully') {
-      navigate('/home'); // go to home page
+      navigate('/'); // go to home page
     }
   };
 
