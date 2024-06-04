@@ -1,0 +1,19 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #89216b;
+  }
+  
+  .navbar button {
+    background-color: #da4453;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .navbar button:hover {
+    background-color: #89216b;
+  }
+  
