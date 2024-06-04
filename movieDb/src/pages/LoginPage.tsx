@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useStore } from '../store/store';
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './styles/authPage.css';
 
 const LoginPage: React.FC = () => {
@@ -8,13 +8,14 @@ const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const msg = await login({ username, password });
     setMessage(msg);
     if (msg === 'Login successful') {
-      return redirect("/"); //  to home page
+      navigate("/home"); //  to home page
     }
     return null;
   };
