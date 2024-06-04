@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  
 }
 
 :root {
@@ -12,15 +13,17 @@
   --whiteColor: #ffffff;
   --titleColor: #555555;
   --labelColor: #333333;
+  
 }
 
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
+  
 }
 
 body {
-  background: linear-gradient(to right, #da4453, var(--mainColor));
+  background: linear-gradient(to left, #da4453, var(--mainColor));
   font-weight: 400;
   min-height: 100vh;
   display: grid;
@@ -29,14 +32,15 @@ body {
 }
 
 .wrapper {
-  position: relative;
+  position:relative;
   width: 35rem;
   height: 50rem;
 }
 
-@media (min-width: 540px) {
+@media (max-width: 500px ) {
   .wrapper {
-    width: 40rem;
+    width: 35rem;
+
   }
 }
 
@@ -108,7 +112,7 @@ form .form-group input:focus ~ i,
 form .form-group input:valid ~ i {
   top: 0 !important;
   font-size: 1rem ;
-  background-color: #ffffff;
+  background-color:var(--whiteColor);
 }
 
 .wrapper .form-container form .btn {

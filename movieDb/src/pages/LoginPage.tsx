@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import { useStore } from '../store/store';
+import { redirect } from 'react-router-dom';
 import './styles/authPage.css';
 
 const LoginPage: React.FC = () => {
   const login = useStore((state) => state.login);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    login({ username, password });
+    const msg = await login({ username, password });
+    setMessage(msg);
+    if (msg === 'Login successful') {
+      return redirect("/"); //  to home page
+    }
+    return null;
   };
 
   return (
@@ -41,6 +48,8 @@ const LoginPage: React.FC = () => {
           <div className="link">
             <p>Don't have an account? <a href="/signup" className="signup-link">Sign Up</a></p>
           </div>
+          {message && <p>{message}</p>}
+
         </form>
       </div>
     </div>
