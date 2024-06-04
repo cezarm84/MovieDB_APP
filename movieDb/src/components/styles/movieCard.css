@@ -1,0 +1,40 @@
+.movie-card {
+    display: flex;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin: 1rem 0;
+    align-items: center;
+  }
+  
+  .movie-poster {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  
+  .movie-info {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .movie-info h3 {
+    cursor: pointer;
+    margin: 0;
+  }
+  
+  .movie-info button {
+    background-color: #89216b;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .movie-info button:hover {
+    background-color: #da4453;
+  }
+  
