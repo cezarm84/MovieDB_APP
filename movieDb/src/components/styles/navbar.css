@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     padding: 1rem;
-    background-color: #89216b;
+    background-color: transparent;
   }
   
   .navbar button {
@@ -11,9 +11,11 @@
     border: none;
     padding: 0.5rem;
     cursor: pointer;
+    border-radius: 10px;
   }
   
   .navbar button:hover {
     background-color: #89216b;
+    
   }
   
