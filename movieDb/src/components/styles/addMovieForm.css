@@ -1,13 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+
 .Model {
   min-height: 100vh;
-  display: flex;
+  padding-top: 50px;
   justify-content: center;
   align-items: center;
 }
 
 .Model__Form {
-  width: 450px;
   background: #1a2946;
   padding: 2rem;
   display: flex;
@@ -61,7 +61,6 @@
 @media (max-width: 500px) {
   .Model__Form {
     width: 100%;
-    padding: 1rem;
   }
   .FormField__Button {
     padding: 10px 50px;
