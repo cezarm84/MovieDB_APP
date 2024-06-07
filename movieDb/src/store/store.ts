@@ -1,7 +1,7 @@
-import create from 'zustand';
+import { create } from 'zustand';
 import axios from 'axios';
 
-interface Movie {
+ export interface Movie {
   id: string;
   title: string;
   posterUrl: string;
@@ -14,13 +14,16 @@ interface User {
   password: string;
 }
 
-interface StoreState {
+export interface StoreState {
   movies: Movie[];
   user: User | null;
-  getMovies: () => Promise<void>;
+  apiKey: string | null;
+  getApiKey: () => void;
+  getMovies: () => void;
   addMovie: (movie: Omit<Movie, 'id' | 'isFavorite'>) => void;
   removeMovie: (id: string) => void;
   toggleFavorite: (id: string) => void;
+  getMovieDetails: (id: string) => void;
   login: (credentials: User) => Promise<string>;
   logout: () => void;
   register: (userDetails: User) => Promise<string>;
@@ -28,38 +31,67 @@ interface StoreState {
 
 }
 
-export const useStore = create<StoreState>((set) => ({
+export const useStore = create<StoreState>((set, get) => ({
   movies: [],
   user: JSON.parse(localStorage.getItem('user') as string) || null,
-  getMovies: async () =>{
+  apiKey: null,
+
+
+  getApiKey: async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/movies', {
-        params: {
-          key: 'key',
-        },
-      });
+      const response = await axios.get('http://localhost:8080/api/keys');
+      set({ apiKey: response.data.key });
+    } catch (error) {
+      console.error('Error fetching API key:', error);
+    }
+  },
+  getMovies: async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/api/movies?key=${get().apiKey}');
       set({ movies: response.data });
     } catch (error) {
       console.error('Error fetching movies:', error);
     }
   },
-  addMovie: (movie) =>
-    set((state) => ({
-      movies: [
-        ...state.movies,
-        { ...movie, id: Math.random().toString(), isFavorite: false },
-      ],
-    })),
-  removeMovie: (id) =>
-    set((state) => ({
-      movies: state.movies.filter((movie) => movie.id !== id),
-    })),
-  toggleFavorite: (id) =>
-    set((state) => ({
-      movies: state.movies.map((movie) =>
-        movie.id === id ? { ...movie, isFavorite: !movie.isFavorite } : movie
-      ),
-    })),
+  addMovie: async (movie) => {
+    try {
+      const response = await axios.post(`http://localhost:8000/api/movies?key=${get().apiKey}`, movie);
+      set((state) => ({ movies: [...state.movies, response.data] }));
+    } catch (error) {
+      console.error('Error adding movie:', error);
+    }
+  },
+  removeMovie: async (id) => {
+    try {
+      await axios.delete(`http://localhost:8000/api/movies/${id}?key=${get().apiKey}`);
+      set((state) => ({ movies: state.movies.filter((movie) => movie.id !== id) }));
+    } catch (error) {
+      console.error('Error removing movie:', error);
+    }
+  },
+    toggleFavorite: async (id) => {
+      try {
+        await axios.put(`http://localhost:8000/api/movies/${id}?key=${get().apiKey}`);
+        set((state) => ({
+          movies: state.movies.map((movie) =>
+            movie.id === id ? { ...movie, isFavorite: !movie.isFavorite } : movie
+          ),
+        }));
+      } catch (error) {
+        console.error('Error toggling favorite status:', error);
+      }
+    },
+    getMovieDetails: async (id) => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/movies/${id}?key=${get().apiKey}`);
+        const movie = response.data;
+        set((state) => ({
+          movies: state.movies.map((m) => (m.id === id ? { ...m, ...movie } : m)),
+        }));
+      } catch (error) {
+        console.error('Error fetching movie details:', error);
+      }
+    },
   login: async (credentials) => {
     try {
       const response = await axios.post('http://localhost:8080/api/auth/login', credentials);
