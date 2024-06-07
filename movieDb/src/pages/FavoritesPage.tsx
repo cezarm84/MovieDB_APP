@@ -14,7 +14,7 @@ const FavoritesPage = () => {
   const favoriteMovies = movies.filter(movie => movie.isFavorite);
 
   return (
-    <div>
+      <div className="fav-page">
         <Navbar/>
       <ul>
         {favoriteMovies.map((movie) => (
