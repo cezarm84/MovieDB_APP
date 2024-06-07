@@ -1,5 +1,20 @@
+
+
+.movie-list-container {
+  margin-top: 20px;
+}
+
+.movie-list-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
 .movie-list {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
+  list-style: none;
+  padding: 0;
+}
+
+.movie-item {
+  margin-bottom: 10px;
+  font-size: 18px;
+}

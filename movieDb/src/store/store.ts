@@ -17,6 +17,7 @@ interface User {
 interface StoreState {
   movies: Movie[];
   user: User | null;
+  getMovies: () => Promise<void>;
   addMovie: (movie: Omit<Movie, 'id' | 'isFavorite'>) => void;
   removeMovie: (id: string) => void;
   toggleFavorite: (id: string) => void;
@@ -24,11 +25,24 @@ interface StoreState {
   logout: () => void;
   register: (userDetails: User) => Promise<string>;
   setUser: (user: User) => void;
+
 }
 
 export const useStore = create<StoreState>((set) => ({
   movies: [],
   user: JSON.parse(localStorage.getItem('user') as string) || null,
+  getMovies: async () =>{
+    try {
+      const response = await axios.get('http://localhost:8080/api/movies', {
+        params: {
+          key: 'key',
+        },
+      });
+      set({ movies: response.data });
+    } catch (error) {
+      console.error('Error fetching movies:', error);
+    }
+  },
   addMovie: (movie) =>
     set((state) => ({
       movies: [
