@@ -34,3 +34,4 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, title, posterUrl, isFavorite 
 };
 
 export default MovieCard;
+
