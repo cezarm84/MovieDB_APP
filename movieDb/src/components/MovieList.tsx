@@ -1,21 +1,24 @@
-import { useStore } from '../store/store';
+import React from 'react';
+import { Movie } from '../store/store';
+import MovieCard from './MovieCard';
 import './styles/movieList.css';
-import { useEffect } from 'react';
-const MovieList = () => {
-  const { movies, getMovies } = useStore();
 
-  useEffect(() => {
-    getMovies();
-  }, []);
+interface MovieListProps {
+  movies: Movie[];
+}
 
+const MovieList: React.FC<MovieListProps> = ({ movies }) => {
   return (
-    <div>
-      <h1>Movies</h1>
-      <ul>
-        {movies.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
-        ))}
-      </ul>
+    <div className="movie-list">
+      {movies.map((movie) => (
+        <MovieCard
+          key={movie.id}
+          id={movie.id}
+          title={movie.title}
+          posterUrl={movie.posterUrl}
+          isFavorite={movie.isFavorite}
+        />
+      ))}
     </div>
   );
 };
