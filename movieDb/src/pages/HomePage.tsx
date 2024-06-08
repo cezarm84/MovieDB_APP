@@ -1,23 +1,24 @@
+import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import MovieList from '../components/MovieList';
 import AddMovieForm from '../components/AddMovieForm';
 import './styles/homePage.css';
 import { useStore } from '../store/store';
-import React, { useEffect } from 'react';
-
 
 const HomePage: React.FC = () => {
   const movies = useStore((state) => state.movies);
   const getMovies = useStore((state) => state.getMovies);
-  const getApiKey = useStore((state) => state.getApiKey);
+  const getKey = useStore((state) => state.getKey);
 
   useEffect(() => {
     const initialize = async () => {
-      await getApiKey();
-      getMovies();
+      const apiKey = await getKey(); 
+      if (apiKey) {
+        await getMovies(); 
+      }
     };
     initialize();
-  }, [getMovies, getApiKey]);
+  }, [getMovies, getKey]);
 
   return (
     <div className="home-page">
@@ -31,7 +32,5 @@ const HomePage: React.FC = () => {
     </div>
   );
 };
-
-
 
 export default HomePage;
