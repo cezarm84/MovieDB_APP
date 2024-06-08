@@ -1,3 +1,4 @@
+ @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 .movie-details-container {
   display: flex;
   flex-direction: column;
@@ -19,10 +20,13 @@
 }
 
 .movie-title {
-  font-size: 2em;
-  color: #333;
+  font-size: 1.5em;
+  color: #af740d;
   margin-top: 20px;
   text-align: center;
+  font-family: "Cinzel";
+  font-weight: 700;
+  
 }
 
 .movie-details {

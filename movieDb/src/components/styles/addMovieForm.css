@@ -7,7 +7,7 @@
 }
 
 .Model__Form {
-  background: #1a2946;
+  background: #1d212a;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -41,7 +41,7 @@
   padding: 10px;
   align-items: center;
   border-radius: 30px;
-  height: ;
+  
 }
 
 .FormField__Button {

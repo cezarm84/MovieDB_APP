@@ -13,14 +13,15 @@
     width: 80%;
     max-width: 100%;
     background: transparent;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(88, 154, 200, 0.1);
     border-radius: 8px;
     margin-top: 50px;
+    height: 100vh;
   }
   
   .title {
     font-size: 2em;
-    color: #333;
+    color: gold;
     margin-top:20px;
     text-align: center;
     
@@ -34,6 +35,4 @@
     border-bottom: 1px solid #ddd;
   }
   
-  
-
   
