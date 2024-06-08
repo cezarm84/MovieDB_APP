@@ -17,6 +17,7 @@ const FavoritesPage = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div className="fav-page">
       <Navbar />
       <div className="content">
@@ -35,6 +36,15 @@ const FavoritesPage = () => {
           ))}
         </ul>
       </div>
+=======
+      <div className="fav-page">
+        <Navbar/>
+      <ul>
+        {favoriteMovies.map((movie) => (
+          <li key={movie.id}>{movie.title}</li>
+        ))}
+      </ul>
+>>>>>>> 2ea5445d0e0e6ff66a9f702f698ac68e87a5d631
     </div>
   );
 };
