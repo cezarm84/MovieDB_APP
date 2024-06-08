@@ -1,19 +1,9 @@
-@media screen and (max-width: 500px) {
-  .content {
-    flex-direction: column;
-    margin-left: 15px;
-    
-  }
 
-  .left-content,
-  .trailer-content {
-    width: 100%;
-  }
-}
 
 .movie-details {
   max-width: 100%;
-  margin: 0 auto;
+  margin-top: -430px;
+  margin-left: 38px;
   
 }
 
@@ -38,5 +28,27 @@
   margin-left: 70px;
 }
 
+.video-background {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+}
 
+@media screen and (max-width: 500px) {
+  .content {
+    flex-direction: column;
+    margin-left: 15px;
+    
+  }
 
+  .left-content,
+  .trailer-content {
+    width: 100%;
+  }
+}

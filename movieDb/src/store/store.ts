@@ -95,7 +95,7 @@ export const useStore = create<StoreState>((set, get) => ({
       await axios.put(`http://localhost:8080/api/movies/${imdbid}?key=${apiKey}`);
       set((state) => ({
         movies: state.movies.map((movie) =>
-          movie.imdbid === imdbid ? { ...movie, isFavorite: !movie.is_favorite } : movie
+          movie.imdbid === imdbid ? { ...movie, is_Favorite: !movie.is_favorite } : movie
         ),
       }));
     } catch (error) {

@@ -19,10 +19,7 @@ const App: React.FC = () => {
         <Route path="/movie/:imdbid" element={<MovieDetailsPage />} />
         <Route path="/favoritesPage" element={<FavoritesPage/>} />
       </Routes>
-      <video autoPlay loop muted className="video-background">
-        <source src="/videos/Design1.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+     
     </Router>
   );
 };
