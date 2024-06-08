@@ -53,16 +53,20 @@ export const useStore = create<StoreState>((set, get) => ({
   addMovie: async (movie) => {
     const apiKey = get().apiKey;
     if (!apiKey) {
-      console.error('API key is not available');
-      return;
+        console.error('API key is not available');
+        return;
     }
     try {
-      const response = await axios.post(`http://localhost:8080/api/movies?key=${apiKey}`, movie);
-      set((state) => ({ movies: [...state.movies, response.data] }));
+        const response = await axios.post(`http://localhost:8080/api/movies?key=${apiKey}`, {
+            title: movie.title,
+            poster: movie.poster,
+            trailer_link: movie.trailer_link
+        });
+        set((state) => ({ movies: [...state.movies, response.data] }));
     } catch (error) {
-      console.error('Error adding movie:', error);
+        console.error('Error adding movie:', error);
     }
-  },
+},
 
   removeMovie: async (imdbid) => {
     const apiKey = get().apiKey;
