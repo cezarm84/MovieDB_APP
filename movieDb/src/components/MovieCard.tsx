@@ -1,15 +1,14 @@
 import { useStore } from '../store/store';
 import { useNavigate } from 'react-router-dom';
-import './styles/movieCard.css';
+import { Movie } from '../model/Movie';
+import { FaTrash, FaHeart, FaRegHeart } from 'react-icons/fa'; 
 
 interface MovieCardProps {
-  id: string;
-  title: string;
-  posterUrl: string;
-  isFavorite: boolean;
+  movie: Movie;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ id, title, posterUrl, isFavorite }) => {
+const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+  const { id, title, posterUrl, isFavorite } = movie;
   const removeMovie = useStore((state) => state.removeMovie);
   const toggleFavorite = useStore((state) => state.toggleFavorite);
   const navigate = useNavigate();
@@ -24,10 +23,14 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, title, posterUrl, isFavorite 
       />
       <div className="movie-info">
         <h3 onClick={() => navigate(`/movie/${id}`)}>{title}</h3>
-        <button onClick={() => toggleFavorite(id)}>
-          {isFavorite ? 'Unfavorite' : 'Favorite'}
-        </button>
-        <button onClick={() => removeMovie(id)}>Remove</button>
+        <div className="icon-buttons">
+          <FaTrash onClick={() => removeMovie(id)} className="icon-button" />
+          {isFavorite ? (
+            <FaHeart onClick={() => toggleFavorite(id)} className="icon-button" />
+          ) : (
+            <FaRegHeart onClick={() => toggleFavorite(id)} className="icon-button" />
+          )}
+        </div>
       </div>
     </div>
   );
