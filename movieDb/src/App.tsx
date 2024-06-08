@@ -5,6 +5,7 @@ import SignUpPage from './pages/SignupPage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
 import FavoritesPage from './pages/FavoritesPage';
 import { useStore } from './store/store';
+import './App.css'
 
 const App: React.FC = () => {
   const user = useStore((state) => state.user);
