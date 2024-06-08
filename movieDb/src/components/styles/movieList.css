@@ -12,15 +12,13 @@
 .movie-list {
   display: flex;
   overflow-x: auto;
-  scrollbar-width: none; 
-  -ms-overflow-style: none;
+  scrollbar-width:thin; 
   height: 350px;
   width: 100%;
   border-radius: 10px;
   box-shadow: #d9bbe2;
   
 }
-
 
 .movie-poster {
   width: 100%;
