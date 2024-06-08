@@ -6,6 +6,8 @@
     background-color: transparent;
     min-height: 100vh;
     padding: 20px;
+    margin-right: 55px;
+    margin-top: -20px;
   }
   
   .content {

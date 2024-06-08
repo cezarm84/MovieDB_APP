@@ -5,10 +5,11 @@ import { FaTrash, FaHeart, FaRegHeart } from 'react-icons/fa';
 
 interface MovieCardProps {
   movie: Movie;
+  isActive: boolean;
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
-  const { id, title, posterUrl, isFavorite } = movie;
+  const { id, title, poster, is_favorite } = movie;
   const removeMovie = useStore((state) => state.removeMovie);
   const toggleFavorite = useStore((state) => state.toggleFavorite);
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   return (
     <div className="movie-card">
       <img
-        src={posterUrl}
+        src={poster}
         alt={title}
         className="movie-poster"
         onClick={() => navigate(`/movie/${id}`)}
@@ -25,7 +26,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         <h3 onClick={() => navigate(`/movie/${id}`)}>{title}</h3>
         <div className="icon-buttons">
           <FaTrash onClick={() => removeMovie(id)} className="icon-button" />
-          {isFavorite ? (
+          {is_favorite ? (
             <FaHeart onClick={() => toggleFavorite(id)} className="icon-button" />
           ) : (
             <FaRegHeart onClick={() => toggleFavorite(id)} className="icon-button" />

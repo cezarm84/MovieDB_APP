@@ -10,7 +10,7 @@ const FavoritesPage = () => {
     getMovies();
   }, [getMovies]);
 
-  const favoriteMovies = movies.filter(movie => movie.isFavorite);
+  const favoriteMovies = movies.filter(movie => movie.is_favorite);
 
   return (
     <div className="fav-page">
@@ -24,7 +24,7 @@ const FavoritesPage = () => {
               <div className="movie-details">
                 <h2>{movie.title}</h2>
                 <button onClick={() => toggleFavorite(movie.id)}>
-                  {movie.isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+                  {movie.is_favorite ? "Remove from Favorites" : "Add to Favorites"}
                 </button>
               </div>
             </li>
