@@ -6,7 +6,7 @@
     background-color: transparent;
     min-height: 100vh;
     padding: 20px;
-    margin-right: 55px;
+    margin-right: 20px;
     margin-top: -20px;
   }
   
@@ -16,7 +16,7 @@
     background: transparent;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    padding: 20px;
+    margin-top: 50px;
   }
   
   .title {
