@@ -25,12 +25,6 @@
   text-align: center;
 }
 
-.movie-poster {
-  width: 50px;
-  height: 75px;
-  margin-right: 15px;
-}
-
 .movie-details {
   display: flex;
   flex-direction: column;

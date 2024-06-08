@@ -22,8 +22,6 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         className="movie-poster"
         onClick={() => navigate(`/movie/${id}`)}
       />
-      <div className="movie-info">
-        <h3 onClick={() => navigate(`/movie/${id}`)}>{title}</h3>
         <div className="icon-buttons">
           <FaTrash onClick={() => removeMovie(id)} className="icon-button" />
           {is_favorite ? (
@@ -32,7 +30,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
             <FaRegHeart onClick={() => toggleFavorite(id)} className="icon-button" />
           )}
         </div>
-      </div>
+      
     </div>
   );
 };
