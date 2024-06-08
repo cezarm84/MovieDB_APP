@@ -16,7 +16,7 @@ const App: React.FC = () => {
         <Route path="/" element={user ? <HomePage /> : <Navigate to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/movie/:id" element={<MovieDetailsPage />} />
+        <Route path="/movie/:imdbid" element={<MovieDetailsPage />} />
         <Route path="/favoritesPage" element={<FavoritesPage/>} />
       </Routes>
       <video autoPlay loop muted className="video-background">
