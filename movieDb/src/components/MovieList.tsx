@@ -25,10 +25,6 @@ const MovieList: React.FC<MovieListProps> = ({ movies }) => {
           <MovieCard key={movie.id} movie={movie} isActive={index === currentIndex} />
         ))}
       </div>
-      <div className="navigation">
-        <button onClick={goToPrevious}>Previous</button>
-        <button onClick={goToNext}>Next</button>
-      </div>
     </div>
   );
 };
