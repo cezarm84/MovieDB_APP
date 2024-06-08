@@ -7,18 +7,11 @@
   height: 200px; 
   margin: 10px; 
   padding: 10px; 
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 4px 4px rgba(208, 152, 49, 0.788); 
   border-radius: 8px;
   transition: transform 0.2s;
   
 }
-
-.movie-card:hover {
-  transform: scale(1.05);
-}
-
-
 
 .movie-info {
   display: flex;
@@ -28,8 +21,8 @@
 }
 
 .movie-info h3 {
-  font-size: 1.2em; 
-  color: #333;
+  font-size: 1 em; 
+  color: #571616;
   cursor: pointer;
   margin-bottom: 5px; 
 }
@@ -37,17 +30,23 @@
 .icon-buttons {
   font-size: 1.5em; 
   display: flex;
-
   margin-top: 5px 
 }
 
 .icon-button {
   
-  color: #007bff;
+  color: white;
+  background-color: transparent;
+  border-radius: 50%;
   cursor: pointer;
-  
 }
 
+.movie-title {
+  display: none;
+  background: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+}
 
-
-
+.movie-card:hover .movie-title {
+  display: block;
+}

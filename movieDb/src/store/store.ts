@@ -7,10 +7,10 @@ interface StoreState {
   movies: Movie[];
   user: User | null;
   apiKey: string | null;
-  addMovie: (movie: Omit<Movie, 'id' | 'isFavorite'>) => void;
-  removeMovie: (id: string) => void;
-  toggleFavorite: (id: string) => void;
-  getMovieDetails: (id: string) => void;
+  addMovie: (movie: Omit<Movie, 'imdbid' | 'is_Favorite'>) => void;
+  removeMovie: (imdbid: string) => void;
+  toggleFavorite: (imdbid: string) => void;
+  getMovieDetails: (imdbid: string) => void;
   login: (credentials: User) => Promise<string>;
   logout: () => void;
   register: (userDetails: User) => Promise<string>;
@@ -64,31 +64,34 @@ export const useStore = create<StoreState>((set, get) => ({
     }
   },
 
-  removeMovie: async (id) => {
+  removeMovie: async (imdbid) => {
     const apiKey = get().apiKey;
     if (!apiKey) {
       console.error('API key is not available');
       return;
     }
     try {
-      await axios.delete(`http://localhost:8080/api/movies/${id}?key=${apiKey}`);
-      set((state) => ({ movies: state.movies.filter((movie) => movie.id !== id) }));
+      await axios.delete(`http://localhost:8080/api/movies/${imdbid}?key=${apiKey}`);
+      set((state) => ({
+        movies: state.movies.filter((movie) => movie.imdbid !== imdbid)
+      }));
+      localStorage.setItem('movies', JSON.stringify(get().movies.filter((movie) => movie.imdbid !== imdbid)));
     } catch (error) {
       console.error('Error removing movie:', error);
     }
   },
 
-  toggleFavorite: async (id) => {
+  toggleFavorite: async (imdbid) => {
     const apiKey = get().apiKey;
     if (!apiKey) {
       console.error('API key is not available');
       return;
     }
     try {
-      await axios.put(`http://localhost:8080/api/movies/${id}?key=${apiKey}`);
+      await axios.put(`http://localhost:8080/api/movies/${imdbid}?key=${apiKey}`);
       set((state) => ({
         movies: state.movies.map((movie) =>
-          movie.id === id ? { ...movie, isFavorite: !movie.is_favorite } : movie
+          movie.imdbid === imdbid ? { ...movie, isFavorite: !movie.is_favorite } : movie
         ),
       }));
     } catch (error) {
@@ -96,17 +99,17 @@ export const useStore = create<StoreState>((set, get) => ({
     }
   },
 
-  getMovieDetails: async (id) => {
+  getMovieDetails: async (imdbid) => {
     const apiKey = get().apiKey;
     if (!apiKey) {
       console.error('API key is not available');
       return;
     }
     try {
-      const response = await axios.get(`http://localhost:8080/api/movies/${id}?key=${apiKey}`);
+      const response = await axios.get(`http://localhost:8080/api/movies/${imdbid}?key=${apiKey}`);
       const movie = response.data;
       set((state) => ({
-        movies: state.movies.map((m) => (m.id === id ? { ...m, ...movie } : m)),
+        movies: state.movies.map((m) => (m.imdbid === imdbid ? { ...m, ...movie } : m)),
       }));
     } catch (error) {
       console.error('Error fetching movie details:', error);

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useStore } from '../store/store';
 import './styles/addMovieForm.css';
 
+
+
 const AddMovieForm: React.FC = () => {
   const addMovie = useStore((state) => state.addMovie);
   const [title, setTitle] = useState('');
@@ -25,12 +27,17 @@ const AddMovieForm: React.FC = () => {
       return;
     }
     setError('');
-    addMovie({ title, posterUrl, trailerUrl });
+    addMovie({
+      title: title,
+      imdbid:"",
+      poster: posterUrl,
+      trailer_link: trailerUrl,
+      is_favorite: false, 
+    });
     setTitle('');
     setPosterUrl('');
     setTrailerUrl('');
   };
-
   return (
     <div className="Model">
       <form onSubmit={handleSubmit} className="Model__Form add-movie-form">
