@@ -5,9 +5,9 @@ import './styles/movieDetailsPage.css';
 import Navbar from '../components/Navbar';
 
 const MovieDetailsPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { imdbid } = useParams<{ imdbid: string }>();
   const movies = useStore((state) => state.movies);
-  const movie = movies.find((movie: Movie) => movie.id === id);
+  const movie = movies.find((movie: Movie) => movie.imdbid === imdbid);
 
   if (!movie) {
     return <div>Loading...</div>;
@@ -15,19 +15,26 @@ const MovieDetailsPage: React.FC = () => {
 
   return (
     <div className="movie-details">
-       <Navbar />
-      <div className="content"></div>
-       <h2>{movie.title}</h2>
-       <img src={movie.poster} alt={movie.title} />
-      <iframe
-        width="560"
-        height="315"
-        src={movie.trailer_link}
-        title="Movie Trailer"
-        allowFullScreen
-      ></iframe>
+      <Navbar />
+      <div className="content">
+        <div className="trailer-content">
+          <h2>{movie.title}</h2>
+          {movie.trailer_link && (
+            <iframe
+              width="100%"
+              height="315"
+              src={movie.trailer_link}
+              title="Movie Trailer"
+              allowFullScreen
+            ></iframe>
+          )}
+        </div>
+        
+      </div>
     </div>
   );
 };
 
 export default MovieDetailsPage;
+
+

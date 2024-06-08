@@ -42,11 +42,12 @@
 }
 
 .movie-title {
-  display: none;
-  background: rgba(0, 0, 0, 0.5);
-  box-sizing: border-box;
+  font-size: 1.5em;
+  color: #af740d;
+  margin-top: 20px;
+  text-align: center;
+  font-family: "Cinzel";
+  font-weight: 700;
+  
 }
 
-.movie-card:hover .movie-title {
-  display: block;
-}
