@@ -3,28 +3,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 250px;
-  height: 200px; 
-  margin: 10px; 
+  width: 100%;
+  height: 320px; 
+  margin: 20px; 
   padding: 10px; 
-  box-shadow: 0 4px 4px rgba(208, 152, 49, 0.788); 
+  box-shadow: 0 4px 4px rgba(231, 153, 9, 0.788); 
   border-radius: 8px;
-  transition: transform 0.2s;
+ 
   
-}
-
-.movie-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10px; 
-}
-
-.movie-info h3 {
-  font-size: 1 em; 
-  color: #571616;
-  cursor: pointer;
-  margin-bottom: 5px; 
 }
 
 .icon-buttons {

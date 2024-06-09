@@ -6,14 +6,16 @@
   align-items: center;
   height: 400px;
   width: 100%;
+  margin-left: 25px;
+  position: relative;
   
 }
 
 .movie-list {
   display: flex;
-  overflow-x: auto;
+  overflow-x: none;
   scrollbar-width:thin; 
-  height: 350px;
+  height: 400px;
   width: 100%;
   border-radius: 10px;
   box-shadow: #d9bbe2;
@@ -22,22 +24,19 @@
 
 .movie-poster {
   width: 100%;
-  height: 200px; 
+  height: 300px; 
   object-fit: cover;
   border-radius: 10px;
   cursor: pointer;
   
 }
-.movie-card {
-  flex:auto;
-  margin: 0 5px;
-  
-}
+
 
 .icon-buttons {
   font-size: 1.5em; 
   display: flex;
-  margin-top:5px ;
+  margin-top:18px ;
+  gap: 25px;
 
 }
 
@@ -45,4 +44,65 @@
  
   margin: 0 20px;
   
+}
+.slider-controls {
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  display: flex;
+  justify-content: space-between;
+  width: 150%;
+margin-right: -25px;
+
+}
+
+.slider-controls .arrow {
+  font-size: 1.2em;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 5px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  
+  
+}
+
+@media screen and (min-width: 375px) and (max-width: 500px) {
+  .movie-list-container {
+    height: auto;
+    max-height: 200px;
+  }
+  .slider-controls {
+    position: absolute;
+    width: 120%;
+    top: 80%;
+    margin-right: 30px;
+  }
+  .movie-list {
+    display: flex;
+    overflow-x: none;
+    height: 400px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: #d9bbe2;
+    
+  }
+  
+  .movie-poster {
+    width: 150px;
+    height: 200px; 
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    
+  }
+  .movie-card {
+   
+    width: 75%;
+    height: 250px; 
+    box-shadow: 0 4px 4px rgba(212, 139, 12, 0.788); 
+    border-radius: 8px;
+    margin-left: 40px;
+    
+  }
 }
