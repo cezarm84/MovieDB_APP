@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
-body.favorites-page-body {
-  background: linear-gradient(to left, #da4453, var(--mainColor));
-  background-size: cover !important;
-  font-weight: 400;
-  min-height: 100vh;
-  display: grid;
-  place-content: center;
-  overflow: hidden;
-}
+
 
 .favorites-page {
   background: transparent;
@@ -29,26 +21,41 @@ body.favorites-page-body {
 .content {
   width: 80%;
   max-width: 100%;
-  background: rgba(233, 158, 10, 0.1);
-  box-shadow: 0 8px 16px rgba(220, 192, 6, 0.6);
+  background: rgba(194, 130, 3, 0.7);
+  box-shadow: 0 8px 16px rgba(71, 66, 38, 0.6);
   border-radius: 8px;
   margin-top: 50px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
   font-size: 2em;
-  color: rgb(247, 242, 218);
+  color: rgb(45, 37, 2);
   text-align: center;
   font-family: "Cinzel", Helvetica, Arial;
   font-weight: 700;
-  box-shadow: 0 8px 16px rgba(220, 192, 6, 0.4);
-  background: rgba(232, 192, 111, 0.1);
+  box-shadow: 0 8px 16px rgba(220, 192, 6, 0.5);
+  background: rgba(181, 124, 11, 0.1);
+  border-radius: 10px;
+  width: 100%; 
+  white-space: nowrap;
+ margin-bottom: 20px;
 }
 
 .fav-movie-list-wrapper {
   max-height: 70vh; 
   overflow-y: auto;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+.fav-movie-list-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.fav-movie-list-wrapper {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .fav-movie-list {
@@ -58,6 +65,7 @@ body.favorites-page-body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
 }
 
 .fav-movie-item {
@@ -65,14 +73,15 @@ body.favorites-page-body {
   align-items: center;
   flex-direction: column;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 2px solid #e4b60dcb;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .fav-movie-info {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Add this line */
+  justify-content: space-between;
+  width: 100%; 
 }
 
 .fav-movie-poster {
@@ -89,8 +98,9 @@ body.favorites-page-body {
 }
 
 .fav-movie-details h2 {
-  margin: 10px 0;
-  font-size: 1.5em;
+  margin: 15px ;
+  font-size: 1.3em;
+  color: rgb(50, 36, 4);
 }
 
 .delete-icon {
