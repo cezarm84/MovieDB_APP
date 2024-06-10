@@ -10,6 +10,8 @@ const HomePage: React.FC = () => {
   const movies = useStore((state) => state.movies);
   const getMovies = useStore((state) => state.getMovies);
   const getKey = useStore((state) => state.getKey);
+  const user = useStore((state) => state.user);
+  const totalFavoriteMovies = movies.filter((movie) => movie.is_favorite).length;
 
   useEffect(() => {
     const initialize = async () => {
@@ -33,6 +35,13 @@ const HomePage: React.FC = () => {
       <div className="movie-list">
         <MovieList movies={movies} />
       </div>
+      <footer className="footer">
+      {user && (
+    <p>
+      Hello : {user.username},Total movies: {movies.length}, and in favorite: {totalFavoriteMovies}
+    </p>
+  )}
+</footer>
     </div>
   );
 };
