@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useStore } from '../store/store';
 import './styles/addMovieForm.css';
-
-
+import { MovieInput } from '../model/Movie';
 
 const AddMovieForm: React.FC = () => {
   const addMovie = useStore((state) => state.addMovie);
@@ -10,6 +9,7 @@ const AddMovieForm: React.FC = () => {
   const [posterUrl, setPosterUrl] = useState('');
   const [trailerUrl, setTrailerUrl] = useState('');
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const validateUrl = (url: string) => {
     try {
@@ -20,28 +20,36 @@ const AddMovieForm: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateUrl(posterUrl) || !validateUrl(trailerUrl)) {
       setError('Please enter valid URLs for the poster and trailer.');
       return;
     }
     setError('');
-    addMovie({
+    const newMovie: MovieInput = {
       title: title,
-      imdbid:"",
       poster: posterUrl,
       trailer_link: trailerUrl,
-      is_favorite: false, 
-    });
-    setTitle('');
-    setPosterUrl('');
-    setTrailerUrl('');
+    };
+
+    try {
+      await addMovie(newMovie);
+      setSuccessMessage('Movie added successfully');
+      setTitle('');
+      setPosterUrl('');
+      setTrailerUrl('');
+      setTimeout(() => {
+        setSuccessMessage('');
+      }, 2000); 
+    } catch (error: any) {
+      setError('Error adding movie: ' + error.message);
+    }
   };
   return (
     <div className="Model">
       <form onSubmit={handleSubmit} className="Model__Form add-movie-form">
-        {error && <p className="error">{error}</p>}
+        
         <div className="FormField">
           <label className="FormField__Label">Title</label>
           <input
@@ -76,9 +84,12 @@ const AddMovieForm: React.FC = () => {
             placeholder="Trailer URL"
             required
             aria-label="Trailer URL"
+            
           />
         </div>
         <button type="submit" className="FormField__Button">Add Movie</button>
+        {error && <p className="error">{error}</p>}
+        {successMessage && <p className="success">{successMessage}</p>}
       </form>
     </div>
   );

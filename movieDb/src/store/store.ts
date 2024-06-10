@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 import axios from 'axios';
-import { Movie } from '../model/Movie';
+import { Movie,MovieInput  } from '../model/Movie';
 import { User } from '../model/User';
 
 interface StoreState {
   movies: Movie[];
   user: User | null;
   apiKey: string | null;
-  addMovie: (movie: Omit<Movie, 'imdbid' | 'is_Favorite'>) => void;
+  addMovie: (movie: MovieInput) => Promise<void>;
   removeMovie: (imdbid: string) => void;
   toggleFavorite: (imdbid: string) => void;
   getMovieDetails: (imdbid: string) => void;
@@ -50,23 +50,27 @@ export const useStore = create<StoreState>((set, get) => ({
     }
   },
 
-  addMovie: async (movie) => {
+  addMovie: async (movie: MovieInput) => {
     const apiKey = get().apiKey;
     if (!apiKey) {
-        console.error('API key is not available');
-        return;
+      console.error('API key is not available');
+      return;
     }
     try {
-        const response = await axios.post(`http://localhost:8080/api/movies?key=${apiKey}`, {
-            title: movie.title,
-            poster: movie.poster,
-            trailer_link: movie.trailer_link
-        });
-        set((state) => ({ movies: [...state.movies, response.data] }));
+      const response = await axios.post(`http://localhost:8080/api/movies?key=${apiKey}`, movie);
+      console.log('Server response:', response);
+
+      if (response.data && response.data.data) {
+        set((state) => ({
+          movies: [...state.movies, response.data.data]
+        }));
+      } else {
+        console.error('Unexpected server response format', response);
+      }
     } catch (error) {
-        console.error('Error adding movie:', error);
+      console.error('Error adding movie:', error);
     }
-},
+  },
 
   removeMovie: async (imdbid) => {
     const apiKey = get().apiKey;
